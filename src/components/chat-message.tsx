@@ -45,7 +45,7 @@ export const ChatMessage = ({ message }: ChatMessageProps) => {
       )}
       <div
         className={cn(
-          "p-3 rounded-lg max-w-[70%]",
+          "p-3 rounded-lg max-w-[70%] shadow-md", // Added shadow-md here
           isUser
             ? "bg-primary text-primary-foreground rounded-br-none"
             : "bg-muted text-muted-foreground rounded-bl-none",
@@ -56,7 +56,7 @@ export const ChatMessage = ({ message }: ChatMessageProps) => {
       </div>
       {isUser && (
         <div className="flex-shrink-0">
-          <User className="h-6 w-6 text-secondary-foreground" />
+          <User className="h-6 w-6 text-primary" /> {/* Changed user icon color to primary */}
         </div>
       )}
     </div>
