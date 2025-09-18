@@ -8,6 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, User, Bot } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { ChatMessage } from "./chat-message"; // Import the updated ChatMessage
 
 interface Message {
   role: "user" | "agent";
@@ -114,37 +115,5 @@ export const ChatInterface = () => {
         </Button>
       </CardFooter>
     </Card>
-  );
-};
-
-interface ChatMessageProps {
-  message: Message;
-}
-
-const ChatMessage = ({ message }: ChatMessageProps) => {
-  const isUser = message.role === "user";
-  return (
-    <div className={cn("flex items-start gap-3", isUser ? "justify-end" : "justify-start")}>
-      {!isUser && (
-        <div className="flex-shrink-0">
-          <Bot className="h-6 w-6 text-primary" />
-        </div>
-      )}
-      <div
-        className={cn(
-          "p-3 rounded-lg max-w-[70%]",
-          isUser
-            ? "bg-primary text-primary-foreground rounded-br-none"
-            : "bg-muted text-muted-foreground rounded-bl-none"
-        )}
-      >
-        <p className="text-sm break-words">{message.content}</p>
-      </div>
-      {isUser && (
-        <div className="flex-shrink-0">
-          <User className="h-6 w-6 text-secondary-foreground" />
-        </div>
-      )}
-    </div>
   );
 };
