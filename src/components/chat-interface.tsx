@@ -8,7 +8,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, User, Bot } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import { ChatMessage } from "./chat-message"; // Import the updated ChatMessage
+import { ChatMessage } from "./chat-message";
+import { ThemeToggle } from "./theme-toggle"; // Import ThemeToggle
 
 interface Message {
   role: "user" | "agent";
@@ -72,8 +73,9 @@ export const ChatInterface = () => {
 
   return (
     <Card className="w-full max-w-3xl h-[80vh] flex flex-col shadow-lg rounded-lg overflow-hidden">
-      <CardHeader className="bg-primary text-primary-foreground p-4 border-b">
+      <CardHeader className="bg-primary text-primary-foreground p-4 border-b flex flex-row items-center justify-between">
         <CardTitle className="text-xl font-semibold">Medical Assistant Agent</CardTitle>
+        <ThemeToggle /> {/* Add ThemeToggle here */}
       </CardHeader>
       <CardContent className="flex-1 p-4 overflow-hidden">
         <ScrollArea className="h-full pr-4" ref={scrollAreaRef}>
