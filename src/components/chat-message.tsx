@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { parseAgentResponse } from "@/lib/message-parser";
 import { DoctorList } from "./doctor-list";
 import { BookingConfirmationDisplay } from "./booking-confirmation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface Message {
   role: "user" | "agent";
@@ -32,7 +34,13 @@ export const ChatMessage = ({ message }: ChatMessageProps) => {
         return <BookingConfirmationDisplay confirmation={parsedContent.data as any} />;
       case "text":
       default:
-        return <p className="text-sm break-words">{message.content}</p>;
+        return (
+          <div className="text-sm break-words prose prose-sm dark:prose-invert max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {message.content}
+            </ReactMarkdown>
+          </div>
+        );
     }
   };
 
